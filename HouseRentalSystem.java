@@ -91,4 +91,8 @@ class Guest {
     void registerGuest(Guest person, ArrayList<Guest> list) {
         list.add(person);
     }
+
+    void unregisterGuest(Guest person, ArrayList<Guest> list) {
+        list.remove(person);
+    }
 }
