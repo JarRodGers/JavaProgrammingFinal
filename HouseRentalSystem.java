@@ -38,7 +38,15 @@ class House {
         address = newAddress;
         costPerNight = newCostPerNight;
         dates = createCalendar();
-        houseList.add(this);
+    }
+
+    // Getter methods
+    String getHouseType() {
+        return houseType;
+    }
+
+    String getOwnerName() {
+        return ownerName;
     }
 
     // This method adds a House object to the house list
@@ -93,6 +101,19 @@ class Guest {
         rentalEndDate = newRentalEndDate;
     }
 
+    // Getter methods
+    String getGuestName() {
+        return guestName;
+    }
+
+    String getRentalStartDate() {
+        return rentalStartDate;
+    }
+
+    String getRentalEndDate() {
+        return rentalEndDate;
+    }
+
     // Method to add a guest to the guest list
     void registerGuest(Guest person, ArrayList<Guest> list) {
         list.add(person);
@@ -111,4 +132,9 @@ class Rental {
 
     // Array list to hold all created Rental objects
     ArrayList<Rental> rentalList = new ArrayList<Rental>(0);
+
+    // Constructor for class
+    public Rental(House property, Guest person) {
+
+    }
 }
