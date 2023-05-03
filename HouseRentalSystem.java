@@ -128,6 +128,7 @@ class Rental {
     // Static variable for unique ID; will be incremented in constructor
     public static int id3 = 0;
 
+    int rentalID;
     String guestName, houseType, ownerName, rentalStartDate, rentalEndDate;
 
     // Array list to hold all created Rental objects
@@ -135,6 +136,12 @@ class Rental {
 
     // Constructor for class
     public Rental(House property, Guest person) {
-
+        this.rentalID = id3;
+        id3++;
+        this.guestName = person.getGuestName();
+        this.houseType = property.getHouseType();
+        this.ownerName = property.getOwnerName();
+        this.rentalStartDate = person.getRentalStartDate();
+        this.rentalEndDate = person.getRentalEndDate();
     }
 }
