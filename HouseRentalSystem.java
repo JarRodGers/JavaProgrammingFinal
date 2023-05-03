@@ -35,7 +35,7 @@ class House {
         ownerName = newOwnerName;
         address = newAddress;
         costPerNight = newCostPerNight;
-
+        dates = createCalendar();
     }
 
     // This method adds a House object to the house list
