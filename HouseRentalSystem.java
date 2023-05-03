@@ -96,3 +96,10 @@ class Guest {
         list.remove(person);
     }
 }
+
+class Rental {
+    // Static variable for unique ID; will be incremented in constructor
+    public static int id3 = 0;
+
+    String guestName, houseType, ownerName, rentalStartDate, rentalEndDate;
+}
