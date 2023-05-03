@@ -14,7 +14,7 @@ import java.util.Scanner;
 public class HouseRentalSystem {
     public static void main(String[] args) {
         ArrayList<House> houseList = new ArrayList<House>(0);
-
+        ArrayList<Guest> guestList = new ArrayList<Guest>(0);
     }
 }
 
