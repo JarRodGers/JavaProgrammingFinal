@@ -147,6 +147,11 @@ class House {
 
         return calendar;
     }
+
+    // Method to view information about all registered houses
+    void viewHouseInfo() {
+        System.out.println(houseList);
+    }
 }
 
 class Guest {
@@ -188,6 +193,11 @@ class Guest {
 
     void unregisterGuest(Guest person, ArrayList<Guest> list) {
         list.remove(person);
+    }
+
+    // Method to view all registered guests
+    void viewGuestInfo() {
+        System.out.println(guestList);
     }
 }
 
