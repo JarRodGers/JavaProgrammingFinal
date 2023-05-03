@@ -43,6 +43,11 @@ class House {
         list.add(property);
     }
 
+    // This method removes a House object from the house list
+    void unregisterHouse(House property, ArrayList<House> list) {
+        list.remove(property);
+    }
+
     // This method creates a calendar year in a 2 dimensional array; February is assumed to have 28 days
     int[][] createCalendar() {
         // create 2d array with 12 rows
