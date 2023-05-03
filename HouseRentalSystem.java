@@ -18,6 +18,9 @@ public class HouseRentalSystem {
     }
 
     public static void menu() {
+        // ArrayList that will hold all created House objects
+        ArrayList<House> houseList = new ArrayList<House>(0);
+
         System.out.println("Make a selection:\n");
         System.out.println("1. View Registered Houses   4. Remove a House     7. Rent a House\n");
         System.out.println("2. View Regustered Guests   5. Register a guest   8. Remove a Guest\n");
@@ -47,12 +50,19 @@ public class HouseRentalSystem {
             House newHouse = new House(newHouseType, newOwnerName, newAddress, newCostPerNight);
 
             // Register house in house list
-            newHouse.registerHouse(newHouse);
+            newHouse.registerHouse(newHouse, houseList);
 
             menu();
         }
         else if (userSelection == 4) {
+            // Get ID of house to remove
+            System.out.println("Enter the ID of the house to be removed: ");
+            int idToDelete = input.nextInt();
 
+            // Pass ID to unregister house method
+            houseList.remove(idToDelete);
+
+            menu();
         }
         else if (userSelection == 5) {
 
@@ -81,9 +91,6 @@ class House {
     String houseType, ownerName, address;
     double costPerNight;
     int[][] dates;
-
-    // ArrayList that will hold all created House objects
-    ArrayList<House> houseList = new ArrayList<House>(0);
 
     // Static variable used to create unique registration ID; will be incremented in constructor
     public static int id = 0;
@@ -176,13 +183,13 @@ class House {
     }
 
     // This method adds a House object to the house list
-    void registerHouse(House property) {
-        houseList.add(property);
+    void registerHouse(House property, ArrayList<House> list) {
+        list.add(property);
     }
 
     // This method removes a House object from the house list
-    void unregisterHouse(House property) {
-        houseList.remove(property);
+    void unregisterHouse(int selection, ArrayList<House> list) {
+        list.remove(selection);
     }
 
     // This method creates a calendar year in a 2 dimensional array; February is assumed to have 28 days
