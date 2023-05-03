@@ -13,8 +13,7 @@ import java.util.Scanner;
 
 public class HouseRentalSystem {
     public static void main(String[] args) {
-        ArrayList<House> houseList = new ArrayList<House>(0);
-        ArrayList<Guest> guestList = new ArrayList<Guest>(0);
+
     }
 }
 
@@ -23,6 +22,9 @@ class House {
     String houseType, ownerName, address;
     double costPerNight;
     int[][] dates;
+
+    // ArrayList that will hold all created House objects
+    ArrayList<House> houseList = new ArrayList<House>(0);
 
     // Static variable used to create unique registration ID; will be incremented in constructor
     public static int id = 0;
@@ -36,6 +38,7 @@ class House {
         address = newAddress;
         costPerNight = newCostPerNight;
         dates = createCalendar();
+        houseList.add(this);
     }
 
     // This method adds a House object to the house list
@@ -78,6 +81,9 @@ class Guest {
     int guestID;
     String guestName, rentalStartDate, rentalEndDate;
 
+    // ArrayList to hold all created Guest objects
+    ArrayList<Guest> guestList = new ArrayList<Guest>(0);
+
     // Constructor for class
     public Guest(String newGuestName, String newRentalStartDate, String newRentalEndDate) {
         this.guestID = id2;
@@ -102,4 +108,7 @@ class Rental {
     public static int id3 = 0;
 
     String guestName, houseType, ownerName, rentalStartDate, rentalEndDate;
+
+    // Array list to hold all created Rental objects
+    ArrayList<Rental> rentalList = new ArrayList<Rental>(0);
 }
