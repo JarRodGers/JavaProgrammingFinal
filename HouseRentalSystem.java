@@ -9,9 +9,11 @@
 /////////////////////////////////////////////////////////////////////////////////
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class HouseRentalSystem {
     public static void main(String[] args) {
+        ArrayList<House> houseList = new ArrayList<House>();
 
     }
 }
@@ -21,6 +23,20 @@ class House {
     String houseType, ownerName, address;
     double costPerNight;
     int[][] dates;
+
+    // Static variable used to create unique registration ID; will be incremented in constructor
+    public static int id = 0;
+
+    // Class constructor
+    public House(String newHouseType, String newOwnerName, String newAddress, double newCostPerNight) {
+        this.registrationID = id;
+        id++;
+        houseType = newHouseType;
+        ownerName = newOwnerName;
+        address = newAddress;
+        costPerNight = newCostPerNight;
+    }
+    
 }
 
 class Guest {
