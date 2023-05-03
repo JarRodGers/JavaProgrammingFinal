@@ -54,7 +54,7 @@ class House {
     }
 
     // Setter methods
-    void setUnavailableDates(String startDate, String endDate, int[][] calendar, int numberOfDays) {
+    void setUnavailableDates(String startDate, String endDate, int[][] calendar) {
         // Split start date by forward slash
         String[] splitStart = startDate.split("/");
         String[] splitEnd = endDate.split("/");
@@ -67,7 +67,7 @@ class House {
 
         // Loop through array at given location and change dates to 1
         if (startRow == endRow) {
-            for (int i = 0; i < numberOfDays; i++) {
+            for (int i = 0; i < endColumn; i++) {
                 calendar[startRow][startColumn] = 1;
                 startColumn++;
             }
@@ -83,7 +83,7 @@ class House {
         }
     }
 
-    void setAvailableDates(String startDate, String endDate, int[][] calendar, int numberOfDays) {
+    void setAvailableDates(String startDate, String endDate, int[][] calendar) {
         // Split start date by forward slash
         String[] splitStart = startDate.split("/");
         String[] splitEnd = endDate.split("/");
@@ -96,7 +96,7 @@ class House {
 
         // Loop through array at given location and change dates to 1
         if (startRow == endRow) {
-            for (int i = 0; i < numberOfDays; i++) {
+            for (int i = 0; i < endColumn; i++) {
                 calendar[startRow][startColumn] = 0;
                 startColumn++;
             }
@@ -111,7 +111,7 @@ class House {
             }
         }
     }
-    
+
     // This method adds a House object to the house list
     void registerHouse(House property, ArrayList<House> list) {
         list.add(property);
@@ -213,6 +213,58 @@ class Rental {
     // with the house. If dates are available, a rental object will be created and 
     // added to the rental list. If dates are not available, an error message will show.
     void rentHouse(House property, Guest person) {
+        // Split start date and end date for guest
+        String[] splitStart = person.getRentalStartDate().split("/");
+        String[] splitEnd = person.getRentalEndDate().split("/");
 
+        // Store results in temp variables
+        int startRow = (Integer.parseInt(splitStart[0]) - 1);
+        int startColumn = (Integer.parseInt(splitStart[1]) - 1);
+        int endRow = (Integer.parseInt(splitEnd[0]) - 1);
+        int endColumn = (Integer.parseInt(splitEnd[1]) - 1);
+
+        // Import house's dates array
+        int[][] currentSchedule = property.getDates();
+        
+        // Loop through array at given location
+        if (startRow == endRow) {
+            for (int i = 0; i < endColumn; i++) {
+                int currentDay = currentSchedule[startRow][startColumn];
+                if (currentDay == 1) {
+                    System.out.println("The proposed rental dates are unavailable for the selected property.\n");
+                    return;
+                }
+                else {
+                    startColumn++;
+                }
+            }
+        }
+        else {
+            for (int i = startColumn; i < currentSchedule[startRow].length; i++) {
+                int currentDay = currentSchedule[startRow][startColumn];
+                if (currentDay == 1) {
+                    System.out.println("The proposed rental dates are unavailable for the selected property.\n");
+                    return; 
+                }
+                else {
+                    startColumn++;
+                }
+            }
+            for (int i = 0; i < endColumn; i++) {
+                int currentDay = currentSchedule[endRow][i];
+                if (currentDay == 1) {
+                    System.out.println("The proposed rental dates are unavailable for the selected property.\n");
+                    return;
+                }
+            }
+        }
+
+        // If no ones are found, create rental object
+        System.out.println("The dates are available for the given property. The rental has been scheduled;");
+        Rental newRental = new Rental(property,person);
+        rentalList.add(newRental);
+
+        // Set rental dates to unavailable for house
+        property.setUnavailableDates(person.getRentalStartDate(), person.getRentalEndDate(), property.getDates());
     }
 }
