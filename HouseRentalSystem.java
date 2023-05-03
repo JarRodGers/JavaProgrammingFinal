@@ -8,6 +8,8 @@
 // will also be available. The program is built on a basic CRUD framework.     //
 /////////////////////////////////////////////////////////////////////////////////
 
+import java.util.ArrayList;
+
 public class HouseRentalSystem {
     public static void main(String[] args) {
 
@@ -15,7 +17,10 @@ public class HouseRentalSystem {
 }
 
 class House {
-
+    int registrationID;
+    String houseType, ownerName, address;
+    double costPerNight;
+    int[][] dates;
 }
 
 class Guest {
