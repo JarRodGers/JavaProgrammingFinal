@@ -49,6 +49,69 @@ class House {
         return ownerName;
     }
 
+    int[][] getDates() {
+        return dates;
+    }
+
+    // Setter methods
+    void setUnavailableDates(String startDate, String endDate, int[][] calendar, int numberOfDays) {
+        // Split start date by forward slash
+        String[] splitStart = startDate.split("/");
+        String[] splitEnd = endDate.split("/");
+
+        // Store results in temp variables; account for differences in array
+        int startRow = (Integer.parseInt(splitStart[0]) - 1);
+        int startColumn = (Integer.parseInt(splitStart[1]) - 1);
+        int endRow = (Integer.parseInt(splitEnd[0]) - 1);
+        int endColumn = (Integer.parseInt(splitEnd[1]) - 1);
+
+        // Loop through array at given location and change dates to 1
+        if (startRow == endRow) {
+            for (int i = 0; i < numberOfDays; i++) {
+                calendar[startRow][startColumn] = 1;
+                startColumn++;
+            }
+        }
+        else {
+            for (int i = startColumn; i < calendar[startRow].length; i++) {
+                calendar[startRow][startColumn] = 1;
+                startColumn++;
+            }
+            for (int i = 0; i < endColumn; i++) {
+                calendar[endRow][i] = 1;
+            }
+        }
+    }
+
+    void setAvailableDates(String startDate, String endDate, int[][] calendar, int numberOfDays) {
+        // Split start date by forward slash
+        String[] splitStart = startDate.split("/");
+        String[] splitEnd = endDate.split("/");
+
+        // Store results in temp variables; account for differences in array
+        int startRow = (Integer.parseInt(splitStart[0]) - 1);
+        int startColumn = (Integer.parseInt(splitStart[1]) - 1);
+        int endRow = (Integer.parseInt(splitEnd[0]) - 1);
+        int endColumn = (Integer.parseInt(splitEnd[1]) - 1);
+
+        // Loop through array at given location and change dates to 1
+        if (startRow == endRow) {
+            for (int i = 0; i < numberOfDays; i++) {
+                calendar[startRow][startColumn] = 0;
+                startColumn++;
+            }
+        }
+        else {
+            for (int i = startColumn; i < calendar[startRow].length; i++) {
+                calendar[startRow][startColumn] = 0;
+                startColumn++;
+            }
+            for (int i = 0; i < endColumn; i++) {
+                calendar[endRow][i] = 0;
+            }
+        }
+    }
+    
     // This method adds a House object to the house list
     void registerHouse(House property, ArrayList<House> list) {
         list.add(property);
@@ -143,5 +206,13 @@ class Rental {
         this.ownerName = property.getOwnerName();
         this.rentalStartDate = person.getRentalStartDate();
         this.rentalEndDate = person.getRentalEndDate();
+    }
+
+    // This method will take a house and a guest as parameters. It will check if the
+    // rental dates associated with the guest are available in the dates associated 
+    // with the house. If dates are available, a rental object will be created and 
+    // added to the rental list. If dates are not available, an error message will show.
+    void rentHouse(House property, Guest person) {
+
     }
 }
