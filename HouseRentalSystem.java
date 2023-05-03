@@ -77,4 +77,18 @@ class Guest {
     
     int guestID;
     String guestName, rentalStartDate, rentalEndDate;
+
+    // Constructor for class
+    public Guest(String newGuestName, String newRentalStartDate, String newRentalEndDate) {
+        this.guestID = id2;
+        id2++;
+        guestName = newGuestName;
+        rentalStartDate = newRentalStartDate;
+        rentalEndDate = newRentalEndDate;
+    }
+
+    // Method to add a guest to the guest list
+    void registerGuest(Guest person, ArrayList<Guest> list) {
+        list.add(person);
+    }
 }
