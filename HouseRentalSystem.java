@@ -53,6 +53,10 @@ class House {
         return dates;
     }
 
+    double getCostPerNight() {
+        return costPerNight;
+    }
+
     // Setter methods
     void setUnavailableDates(String startDate, String endDate, int[][] calendar) {
         // Split start date by forward slash
@@ -266,5 +270,38 @@ class Rental {
 
         // Set rental dates to unavailable for house
         property.setUnavailableDates(person.getRentalStartDate(), person.getRentalEndDate(), property.getDates());
+    }
+
+    // This method returns a house by setting its unavailable dates back
+    // to available. It also caluclates the total rental cost and removes
+    // the associated rental from the rental list.
+    void returnHouse(House property, Guest person) {
+        // Set unavailable dates to available
+        property.setAvailableDates(person.getRentalStartDate(), person.getRentalEndDate(), property.getDates());
+
+        // Calculate total rental cost
+        String[] splitStart = person.getRentalStartDate().split("/");
+        String[] splitEnd = person.getRentalEndDate().split("/");
+
+        int startMonth = Integer.parseInt(splitStart[0]);
+        int startDay = Integer.parseInt(splitStart[1]);
+        int endMonth = Integer.parseInt(splitEnd[0]);
+        int endDay = Integer.parseInt(splitEnd[1]);
+
+        int numberOfDays;
+
+        if (startMonth == endMonth) {
+            numberOfDays = endDay - startDay;
+        }
+
+        else {
+            int[][] monthCalendar = property.getDates();
+            int tempNumber = monthCalendar[startMonth - 1].length;
+            numberOfDays = (tempNumber - startDay) + endDay;
+        }
+
+        double totalRentalCost = numberOfDays * property.getCostPerNight();
+
+        System.out.println("Rental has been ended successfully.\nTotal rental cost: " + totalRentalCost);
     }
 }
