@@ -13,7 +13,7 @@ import java.util.Scanner;
 
 public class HouseRentalSystem {
     public static void main(String[] args) {
-        ArrayList<House> houseList = new ArrayList<House>();
+        ArrayList<House> houseList = new ArrayList<House>(0);
 
     }
 }
@@ -36,7 +36,11 @@ class House {
         address = newAddress;
         costPerNight = newCostPerNight;
     }
-    
+
+    // This method adds a House object to the house list
+    void registerHouse(House property, ArrayList<House> list) {
+        list.add(property);
+    }
 }
 
 class Guest {
