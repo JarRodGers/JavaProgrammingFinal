@@ -72,5 +72,9 @@ class House {
 }
 
 class Guest {
+    // Static variable for unique ID; will be incremented in constructor
+    public static int id2 = 0;
     
+    int guestID;
+    String guestName, rentalStartDate, rentalEndDate;
 }
