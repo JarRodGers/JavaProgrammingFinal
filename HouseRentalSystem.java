@@ -13,14 +13,66 @@ import java.util.Scanner;
 
 public class HouseRentalSystem {
     public static void main(String[] args) {
-
+        System.out.println("You are now viewing the rental system for Luxury Rentals Worldwide\n");
+        menu();
     }
 
-    void menu() {
-        System.out.println("Make a selection:\n\n");
+    public static void menu() {
+        System.out.println("Make a selection:\n");
         System.out.println("1. View Registered Houses   4. Remove a House     7. Rent a House\n");
         System.out.println("2. View Regustered Guests   5. Register a guest   8. Remove a Guest\n");
         System.out.println("3. Register a House         6. Remove a Guest     9. Exit\n");
+
+        Scanner input = new Scanner(System.in); 
+        int userSelection = input.nextInt();
+        
+        if (userSelection == 1) {
+
+        }
+        else if (userSelection == 2) {
+
+        }
+        else if (userSelection == 3) {
+            // Get owner name, house type, address, and cost per night
+            System.out.println("Enter the owner's name: ");
+            String newOwnerName = input.nextLine();
+            System.out.println("Enter the number of bedrooms and bathrooms: ");
+            String newHouseType = input.nextLine();
+            System.out.println("Enter the house address: ");
+            String newAddress = input.nextLine();
+            System.out.println("Enter the cost per night: ");
+            double newCostPerNight = input.nextDouble();
+
+            // Call house constructor and pass info
+            House newHouse = new House(newHouseType, newOwnerName, newAddress, newCostPerNight);
+
+            // Register house in house list
+            newHouse.registerHouse(newHouse);
+
+            menu();
+        }
+        else if (userSelection == 4) {
+
+        }
+        else if (userSelection == 5) {
+
+        }
+        else if (userSelection == 6) {
+
+        }
+        else if (userSelection == 7) {
+
+        }
+        else if (userSelection == 8) {
+
+        }
+        else if (userSelection == 9) {
+
+        }
+        else {
+            System.out.println("Incorrect menu selection. Try again. Enter only the number corresponding to your selection.\n");
+            menu();
+        }
     }
 }
 
@@ -124,13 +176,13 @@ class House {
     }
 
     // This method adds a House object to the house list
-    void registerHouse(House property, ArrayList<House> list) {
-        list.add(property);
+    void registerHouse(House property) {
+        houseList.add(property);
     }
 
     // This method removes a House object from the house list
-    void unregisterHouse(House property, ArrayList<House> list) {
-        list.remove(property);
+    void unregisterHouse(House property) {
+        houseList.remove(property);
     }
 
     // This method creates a calendar year in a 2 dimensional array; February is assumed to have 28 days
