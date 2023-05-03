@@ -15,6 +15,13 @@ public class HouseRentalSystem {
     public static void main(String[] args) {
 
     }
+
+    void menu() {
+        System.out.println("Make a selection:\n\n");
+        System.out.println("1. View Registered Houses   4. Remove a House     7. Rent a House\n");
+        System.out.println("2. View Regustered Guests   5. Register a guest   8. Remove a Guest\n");
+        System.out.println("3. Register a House         6. Remove a Guest     9. Exit\n");
+    }
 }
 
 class House {
