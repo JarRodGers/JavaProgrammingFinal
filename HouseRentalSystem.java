@@ -108,9 +108,23 @@ public class HouseRentalSystem {
 
             // Rent house
             newRental.rentHouse(houseList.get(hID), guestList.get(gID));
+
+            menu();
         }
         else if (userSelection == 8) {
+            // Get ID of guest that wants to end rental
+            System.out.println("Enter guest ID: ");
+            int gID = input.nextInt();
 
+            // Get ID of house to be returned
+            System.out.println("Enter ID of house to be returned: ");
+            int hID = input.nextInt();
+
+            // Pass IDs to return house method
+            Rental removedRental = new Rental(houseList.get(hID), guestList.get(gID));
+            removedRental.returnHouse(houseList.get(hID), guestList.get(gID));
+
+            menu();
         }
         else if (userSelection == 9) {
 
