@@ -29,6 +29,17 @@ public class HouseRentalSystem {
         }
     }
 
+    // Method to view all registered guests
+    public static void viewGuestInfo(ArrayList<Guest> list) {
+        for (int i = 0; i < list.size(); i++) {
+            Guest currentGuest = list.get(i);
+            System.out.println("\n\nGuest ID: " + currentGuest.getGuestID());
+            System.out.println("Guest Name: " + currentGuest.getGuestName());
+            System.out.println("Rental Start Date: " + currentGuest.getRentalStartDate());
+            System.out.println("Rental End Date: " + currentGuest.getRentalEndDate());
+        }
+    }
+
     public static void menu() {
         // ArrayList that will hold all created House objects
         ArrayList<House> houseList = new ArrayList<House>(0);
@@ -46,9 +57,11 @@ public class HouseRentalSystem {
         
         if (userSelection == 1) {
             viewHouseInfo(houseList);
+            menu();
         }
         else if (userSelection == 2) {
-
+            viewGuestInfo(guestList);
+            menu();
         }
         else if (userSelection == 3) {
             // Get owner name, house type, address, and cost per night
@@ -314,6 +327,10 @@ class Guest {
         return rentalEndDate;
     }
 
+    int getGuestID() {
+        return guestID;
+    }
+
     // Method to add a guest to the guest list
     void registerGuest(Guest person, ArrayList<Guest> list) {
         list.add(person);
@@ -321,11 +338,6 @@ class Guest {
 
     void unregisterGuest(int selection, ArrayList<Guest> list) {
         list.remove(selection);
-    }
-
-    // Method to view all registered guests
-    void viewGuestInfo() {
-        System.out.println(guestList);
     }
 }
 
