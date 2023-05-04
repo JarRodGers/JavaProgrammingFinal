@@ -85,7 +85,14 @@ public class HouseRentalSystem {
             menu();
         }
         else if (userSelection == 6) {
+            // Get ID of guest to remove
+            System.out.println("Enter the ID of the guest to be removed: ");
+            int idToBeDeleted = input.nextInt();
 
+            // Pass ID to unregister guest method
+            guestList.remove(idToBeDeleted);
+
+            menu();
         }
         else if (userSelection == 7) {
 
