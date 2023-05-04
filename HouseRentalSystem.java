@@ -10,6 +10,7 @@
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.text.NumberFormat;
 
 public class HouseRentalSystem {
     public static void main(String[] args) {
@@ -25,31 +26,41 @@ public class HouseRentalSystem {
 
     // Method to view information about all registered houses
     public static void viewHouseInfo(ArrayList<House> list) {
-        for (int i = 0; i < list.size(); i++) {
-            House currentHouse = list.get(i);
-            System.out.println("\n\nHouse ID: " + currentHouse.getRegistrationID());
-            System.out.println("House Type: " + currentHouse.getHouseType());
-            System.out.println("Owner Name: " + currentHouse.getOwnerName());
-            System.out.println("House Address: " + currentHouse.getAddress());
-            System.out.println("Cost Per Night: " + currentHouse.getCostPerNight());
+        if (list.size() == 0) {
+            System.out.println("\nThere are no registered houses in the system.");
+        }
+        else {
+            for (int i = 0; i < list.size(); i++) {
+                House currentHouse = list.get(i);
+                System.out.println("\n\nHouse ID: " + currentHouse.getRegistrationID());
+                System.out.println("House Type: " + currentHouse.getHouseType());
+                System.out.println("Owner Name: " + currentHouse.getOwnerName());
+                System.out.println("House Address: " + currentHouse.getAddress());
+                System.out.println("Cost Per Night: " + currentHouse.getCostPerNight());
+            }
         }
     }
 
     // Method to view all registered guests
     public static void viewGuestInfo(ArrayList<Guest> list) {
-        for (int i = 0; i < list.size(); i++) {
-            Guest currentGuest = list.get(i);
-            System.out.println("\n\nGuest ID: " + currentGuest.getGuestID());
-            System.out.println("Guest Name: " + currentGuest.getGuestName());
-            System.out.println("Rental Start Date: " + currentGuest.getRentalStartDate());
-            System.out.println("Rental End Date: " + currentGuest.getRentalEndDate());
+        if (list.size() == 0) {
+            System.out.println("\nThere are no registered guests in the system.");
+        }
+        else {
+            for (int i = 0; i < list.size(); i++) {
+                Guest currentGuest = list.get(i);
+                System.out.println("\n\nGuest ID: " + currentGuest.getGuestID());
+                System.out.println("Guest Name: " + currentGuest.getGuestName());
+                System.out.println("Rental Start Date: " + currentGuest.getRentalStartDate());
+                System.out.println("Rental End Date: " + currentGuest.getRentalEndDate());
+            }
         }
     }
 
     public static void menu(ArrayList<House> houseList, ArrayList<Guest> guestList) {
-        System.out.println("Make a selection:\n");
+        System.out.println("\nMake a selection:\n");
         System.out.println("1. View Registered Houses   4. Remove a House     7. Rent a House\n");
-        System.out.println("2. View Registered Guests   5. Register a guest   8. Remove a Guest\n");
+        System.out.println("2. View Registered Guests   5. Register a guest   8. End a Rental\n");
         System.out.println("3. Register a House         6. Remove a Guest     9. Exit\n");
 
         Scanner input = new Scanner(System.in); 
@@ -385,7 +396,7 @@ class Rental {
             for (int i = 0; i < endColumn; i++) {
                 int currentDay = currentSchedule[startRow][startColumn];
                 if (currentDay == 1) {
-                    System.out.println("The proposed rental dates are unavailable for the selected property.\n");
+                    System.out.println("\nThe proposed rental dates are unavailable for the selected property.\n");
                     return;
                 }
                 else {
@@ -397,7 +408,7 @@ class Rental {
             for (int i = startColumn; i < currentSchedule[startRow].length; i++) {
                 int currentDay = currentSchedule[startRow][startColumn];
                 if (currentDay == 1) {
-                    System.out.println("The proposed rental dates are unavailable for the selected property.\n");
+                    System.out.println("\nThe proposed rental dates are unavailable for the selected property.\n");
                     return; 
                 }
                 else {
@@ -407,14 +418,14 @@ class Rental {
             for (int i = 0; i < endColumn; i++) {
                 int currentDay = currentSchedule[endRow][i];
                 if (currentDay == 1) {
-                    System.out.println("The proposed rental dates are unavailable for the selected property.\n");
+                    System.out.println("\nThe proposed rental dates are unavailable for the selected property.\n");
                     return;
                 }
             }
         }
 
         // If no ones are found, create rental object
-        System.out.println("The dates are available for the given property. The rental has been scheduled;");
+        System.out.println("\nThe dates are available for the given property. The rental has been scheduled;");
         Rental newRental = new Rental(property,person);
         rentalList.add(newRental);
 
@@ -452,6 +463,8 @@ class Rental {
 
         double totalRentalCost = numberOfDays * property.getCostPerNight();
 
-        System.out.println("Rental has been ended successfully.\nTotal rental cost: " + totalRentalCost);
+        NumberFormat currency = NumberFormat.getCurrencyInstance();
+
+        System.out.println("Rental has been ended successfully.\nTotal rental cost: " + currency.format(totalRentalCost));
     }
 }
