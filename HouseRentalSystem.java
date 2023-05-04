@@ -21,6 +21,9 @@ public class HouseRentalSystem {
         // ArrayList that will hold all created House objects
         ArrayList<House> houseList = new ArrayList<House>(0);
 
+        // ArrayList to hold all created Guest objects
+        ArrayList<Guest> guestList = new ArrayList<Guest>(0);
+
         System.out.println("Make a selection:\n");
         System.out.println("1. View Registered Houses   4. Remove a House     7. Rent a House\n");
         System.out.println("2. View Regustered Guests   5. Register a guest   8. Remove a Guest\n");
@@ -65,7 +68,21 @@ public class HouseRentalSystem {
             menu();
         }
         else if (userSelection == 5) {
+            // Get guest name, rental start date, and rental end date
+            System.out.println("Enter guest name: ");
+            String newGuestName = input.nextLine();
+            System.out.println("Enter rental start date (mm/dd): ");
+            String newRentalStartDate = input.nextLine();
+            System.out.println("Enter rental end date (mm/dd): ");
+            String newRentalEndDate = input.nextLine();
 
+            // Call Guest constructor and pass info
+            Guest newGuest = new Guest(newGuestName, newRentalStartDate, newRentalEndDate);
+
+            // Register guest in guest list
+            newGuest.registerGuest(newGuest, guestList);
+
+            menu();
         }
         else if (userSelection == 6) {
 
@@ -227,9 +244,6 @@ class Guest {
     int guestID;
     String guestName, rentalStartDate, rentalEndDate;
 
-    // ArrayList to hold all created Guest objects
-    ArrayList<Guest> guestList = new ArrayList<Guest>(0);
-
     // Constructor for class
     public Guest(String newGuestName, String newRentalStartDate, String newRentalEndDate) {
         this.guestID = id2;
@@ -257,8 +271,8 @@ class Guest {
         list.add(person);
     }
 
-    void unregisterGuest(Guest person, ArrayList<Guest> list) {
-        list.remove(person);
+    void unregisterGuest(int selection, ArrayList<Guest> list) {
+        list.remove(selection);
     }
 
     // Method to view all registered guests
