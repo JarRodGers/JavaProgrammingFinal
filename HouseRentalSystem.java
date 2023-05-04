@@ -94,8 +94,8 @@ public class HouseRentalSystem {
         }
         else if (userSelection == 5) {
             // Get guest name, rental start date, and rental end date
-            System.out.println("Enter guest name: ");
             String newGuestName = input.nextLine();
+            System.out.println("Enter guest name: ");
             System.out.println("Enter rental start date (mm/dd): ");
             String newRentalStartDate = input.nextLine();
             System.out.println("Enter rental end date (mm/dd): ");
@@ -152,7 +152,7 @@ public class HouseRentalSystem {
             menu();
         }
         else if (userSelection == 9) {
-
+            System.exit(0);
         }
         else {
             System.out.println("Incorrect menu selection. Try again. Enter only the number corresponding to your selection.\n");
