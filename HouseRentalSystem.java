@@ -95,7 +95,19 @@ public class HouseRentalSystem {
             menu();
         }
         else if (userSelection == 7) {
+            // Get ID of guest that wants to rent a house
+            System.out.println("Enter guest ID: ");
+            int gID = input.nextInt();
 
+            // Get ID of house that guest wants to rent
+            System.out.println("Enter ID of house to rent: ");
+            int hID = input.nextInt();
+
+            // Pass objects to Rental constructor
+            Rental newRental = new Rental(houseList.get(hID), guestList.get(gID));
+
+            // Rent house
+            newRental.rentHouse(houseList.get(hID), guestList.get(gID));
         }
         else if (userSelection == 8) {
 
