@@ -13,8 +13,14 @@ import java.util.Scanner;
 
 public class HouseRentalSystem {
     public static void main(String[] args) {
+        // ArrayList that will hold all created House objects
+        ArrayList<House> houseList = new ArrayList<House>(0);
+
+        // ArrayList to hold all created Guest objects
+        ArrayList<Guest> guestList = new ArrayList<Guest>(0);
+
         System.out.println("You are now viewing the rental system for Luxury Rentals Worldwide\n");
-        menu();
+        menu(houseList, guestList);
     }
 
     // Method to view information about all registered houses
@@ -40,16 +46,10 @@ public class HouseRentalSystem {
         }
     }
 
-    public static void menu() {
-        // ArrayList that will hold all created House objects
-        ArrayList<House> houseList = new ArrayList<House>(0);
-
-        // ArrayList to hold all created Guest objects
-        ArrayList<Guest> guestList = new ArrayList<Guest>(0);
-
+    public static void menu(ArrayList<House> houseList, ArrayList<Guest> guestList) {
         System.out.println("Make a selection:\n");
         System.out.println("1. View Registered Houses   4. Remove a House     7. Rent a House\n");
-        System.out.println("2. View Regustered Guests   5. Register a guest   8. Remove a Guest\n");
+        System.out.println("2. View Registered Guests   5. Register a guest   8. Remove a Guest\n");
         System.out.println("3. Register a House         6. Remove a Guest     9. Exit\n");
 
         Scanner input = new Scanner(System.in); 
@@ -57,11 +57,11 @@ public class HouseRentalSystem {
         
         if (userSelection == 1) {
             viewHouseInfo(houseList);
-            menu();
+            menu(houseList, guestList);
         }
         else if (userSelection == 2) {
             viewGuestInfo(guestList);
-            menu();
+            menu(houseList, guestList);
         }
         else if (userSelection == 3) {
             // Get owner name, house type, address, and cost per night
@@ -80,7 +80,7 @@ public class HouseRentalSystem {
             // Register house in house list
             newHouse.registerHouse(newHouse, houseList);
 
-            menu();
+            menu(houseList, guestList);
         }
         else if (userSelection == 4) {
             // Get ID of house to remove
@@ -90,7 +90,7 @@ public class HouseRentalSystem {
             // Pass ID to unregister house method
             houseList.remove(idToDelete);
 
-            menu();
+            menu(houseList, guestList);
         }
         else if (userSelection == 5) {
             // Get guest name, rental start date, and rental end date
@@ -107,7 +107,7 @@ public class HouseRentalSystem {
             // Register guest in guest list
             newGuest.registerGuest(newGuest, guestList);
 
-            menu();
+            menu(houseList, guestList);
         }
         else if (userSelection == 6) {
             // Get ID of guest to remove
@@ -117,7 +117,7 @@ public class HouseRentalSystem {
             // Pass ID to unregister guest method
             guestList.remove(idToBeDeleted);
 
-            menu();
+            menu(houseList, guestList);
         }
         else if (userSelection == 7) {
             // Get ID of guest that wants to rent a house
@@ -134,7 +134,7 @@ public class HouseRentalSystem {
             // Rent house
             newRental.rentHouse(houseList.get(hID), guestList.get(gID));
 
-            menu();
+            menu(houseList, guestList);
         }
         else if (userSelection == 8) {
             // Get ID of guest that wants to end rental
@@ -149,14 +149,14 @@ public class HouseRentalSystem {
             Rental removedRental = new Rental(houseList.get(hID), guestList.get(gID));
             removedRental.returnHouse(houseList.get(hID), guestList.get(gID));
 
-            menu();
+            menu(houseList, guestList);
         }
         else if (userSelection == 9) {
             System.exit(0);
         }
         else {
             System.out.println("Incorrect menu selection. Try again. Enter only the number corresponding to your selection.\n");
-            menu();
+            menu(houseList, guestList);
         }
     }
 }
