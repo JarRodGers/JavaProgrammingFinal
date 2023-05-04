@@ -17,6 +17,18 @@ public class HouseRentalSystem {
         menu();
     }
 
+    // Method to view information about all registered houses
+    public static void viewHouseInfo(ArrayList<House> list) {
+        for (int i = 0; i < list.size(); i++) {
+            House currentHouse = list.get(i);
+            System.out.println("\n\nHouse ID: " + currentHouse.getRegistrationID());
+            System.out.println("House Type: " + currentHouse.getHouseType());
+            System.out.println("Owner Name: " + currentHouse.getOwnerName());
+            System.out.println("House Address: " + currentHouse.getAddress());
+            System.out.println("Cost Per Night: " + currentHouse.getCostPerNight());
+        }
+    }
+
     public static void menu() {
         // ArrayList that will hold all created House objects
         ArrayList<House> houseList = new ArrayList<House>(0);
@@ -33,7 +45,7 @@ public class HouseRentalSystem {
         int userSelection = input.nextInt();
         
         if (userSelection == 1) {
-
+            viewHouseInfo(houseList);
         }
         else if (userSelection == 2) {
 
@@ -173,6 +185,14 @@ class House {
         return costPerNight;
     }
 
+    int getRegistrationID() {
+        return registrationID;
+    }
+
+    String getAddress() {
+        return address;
+    }
+
     // Setter methods
     void setUnavailableDates(String startDate, String endDate, int[][] calendar) {
         // Split start date by forward slash
@@ -262,11 +282,6 @@ class House {
         calendar[11] = new int[31];
 
         return calendar;
-    }
-
-    // Method to view information about all registered houses
-    void viewHouseInfo() {
-        System.out.println(houseList);
     }
 }
 
