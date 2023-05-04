@@ -53,7 +53,7 @@ public class HouseRentalSystem {
         System.out.println("3. Register a House         6. Remove a Guest     9. Exit\n");
 
         Scanner input = new Scanner(System.in); 
-        int userSelection = input.nextInt();
+        int userSelection = Integer.parseInt(input.nextLine());
         
         if (userSelection == 1) {
             viewHouseInfo(houseList);
@@ -72,7 +72,7 @@ public class HouseRentalSystem {
             System.out.println("Enter the house address: ");
             String newAddress = input.nextLine();
             System.out.println("Enter the cost per night: ");
-            double newCostPerNight = input.nextDouble();
+            double newCostPerNight = Double.parseDouble(input.nextLine());
 
             // Call house constructor and pass info
             House newHouse = new House(newHouseType, newOwnerName, newAddress, newCostPerNight);
@@ -85,7 +85,7 @@ public class HouseRentalSystem {
         else if (userSelection == 4) {
             // Get ID of house to remove
             System.out.println("Enter the ID of the house to be removed: ");
-            int idToDelete = input.nextInt();
+            int idToDelete = Integer.parseInt(input.nextLine());
 
             // Pass ID to unregister house method
             houseList.remove(idToDelete);
@@ -94,8 +94,8 @@ public class HouseRentalSystem {
         }
         else if (userSelection == 5) {
             // Get guest name, rental start date, and rental end date
-            String newGuestName = input.nextLine();
             System.out.println("Enter guest name: ");
+            String newGuestName = input.nextLine();
             System.out.println("Enter rental start date (mm/dd): ");
             String newRentalStartDate = input.nextLine();
             System.out.println("Enter rental end date (mm/dd): ");
@@ -112,7 +112,7 @@ public class HouseRentalSystem {
         else if (userSelection == 6) {
             // Get ID of guest to remove
             System.out.println("Enter the ID of the guest to be removed: ");
-            int idToBeDeleted = input.nextInt();
+            int idToBeDeleted = Integer.parseInt(input.nextLine());
 
             // Pass ID to unregister guest method
             guestList.remove(idToBeDeleted);
@@ -122,11 +122,11 @@ public class HouseRentalSystem {
         else if (userSelection == 7) {
             // Get ID of guest that wants to rent a house
             System.out.println("Enter guest ID: ");
-            int gID = input.nextInt();
+            int gID = Integer.parseInt(input.nextLine());
 
             // Get ID of house that guest wants to rent
             System.out.println("Enter ID of house to rent: ");
-            int hID = input.nextInt();
+            int hID = Integer.parseInt(input.nextLine());
 
             // Pass objects to Rental constructor
             Rental newRental = new Rental(houseList.get(hID), guestList.get(gID));
@@ -139,11 +139,11 @@ public class HouseRentalSystem {
         else if (userSelection == 8) {
             // Get ID of guest that wants to end rental
             System.out.println("Enter guest ID: ");
-            int gID = input.nextInt();
+            int gID = Integer.parseInt(input.nextLine());
 
             // Get ID of house to be returned
             System.out.println("Enter ID of house to be returned: ");
-            int hID = input.nextInt();
+            int hID = Integer.parseInt(input.nextLine());
 
             // Pass IDs to return house method
             Rental removedRental = new Rental(houseList.get(hID), guestList.get(gID));
